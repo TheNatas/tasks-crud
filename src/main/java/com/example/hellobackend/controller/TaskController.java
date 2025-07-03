@@ -39,7 +39,7 @@ public class TaskController {
         return service.create(task);
     }
 
-    @PostMapping("/{id}/done")
+    @PutMapping("/{id}/done")
     public Task markDone(@PathVariable Long id) {
         return service.markDone(id).orElseThrow(() -> new RuntimeException("Task not found"));
     }
