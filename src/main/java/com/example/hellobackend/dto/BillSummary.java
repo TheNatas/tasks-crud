@@ -1,12 +1,14 @@
 package com.example.hellobackend.dto;
 
-public class TaskSummary {
+public class BillSummary {
     private Long id;
     private String description;
+    private Double amount;
 
-    public TaskSummary(Long id, String description) {
+    public BillSummary(Long id, String description, Double amount) {
         this.id = id;
         this.description = description;
+        this.amount = amount;
     }
 
     public Long getId() {
@@ -15,5 +17,9 @@ public class TaskSummary {
 
     public String getDescription() {
         return description;
+    }
+
+    public Double getAmount() {
+        return amount;
     }
 }

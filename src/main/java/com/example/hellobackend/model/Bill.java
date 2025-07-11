@@ -2,9 +2,10 @@ package com.example.hellobackend.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
-public class Task {
+public class Bill {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,12 +14,19 @@ public class Task {
     @NotBlank(message = "Description is required")
     private String description;
 
-    private boolean done = false;
+    @NotNull(message = "Amount is required")
+    private Double amount;
+
+    private boolean paid = false;
 
     // Constructors
-    public Task() {}
-    public Task(String description) {
+    public Bill() {}
+    public Bill(
+        String description,
+        Double amount
+    ) {
         this.description = description;
+        this.amount = amount;
     }
 
     // Getters and setters
@@ -30,8 +38,12 @@ public class Task {
         return description;
     }
 
-    public boolean isDone() {
-        return done;
+    public Double getAmount() {
+        return amount;
+    }
+
+    public boolean isPaid() {
+        return paid;
     }
 
     public void setId(Long id) {
@@ -42,7 +54,11 @@ public class Task {
         this.description = description;
     }
 
-    public void setDone(boolean done) {
-        this.done = done;
+    public void setAmount(Double amount) {
+        this.amount = amount;
+    }
+
+    public void setPaid(boolean paid) {
+        this.paid = paid;
     }
 }
