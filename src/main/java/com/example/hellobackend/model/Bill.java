@@ -1,5 +1,6 @@
 package com.example.hellobackend.model;
 
+import java.time.LocalDate;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -13,6 +14,9 @@ public class Bill {
 
     @NotBlank(message = "Description is required")
     private String description;
+
+    @NotNull(message = "Date is required")
+    private LocalDate date;
 
     @NotNull(message = "Amount is required")
     private Double amount;
@@ -72,5 +76,13 @@ public class Bill {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 }

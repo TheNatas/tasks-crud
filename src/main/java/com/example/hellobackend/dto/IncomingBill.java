@@ -1,8 +1,11 @@
 package com.example.hellobackend.dto;
 
+import java.time.LocalDate;
+
 public class IncomingBill {
     private String description;
     private Double amount;
+    private LocalDate date;
 
     // Getters and setters
     public String getDescription() {
@@ -19,5 +22,13 @@ public class IncomingBill {
 
     public void setAmount(Double amount) {
         this.amount = amount;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 }

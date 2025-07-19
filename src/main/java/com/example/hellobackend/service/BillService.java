@@ -26,6 +26,7 @@ public class BillService {
         Bill newBill = new Bill();
         newBill.setDescription(bill.getDescription());
         newBill.setAmount(bill.getAmount());
+        newBill.setDate(bill.getDate());
         newBill.setUser(user);
         return repository.save(newBill);
     }
