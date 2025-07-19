@@ -1,9 +1,11 @@
 package com.example.hellobackend.controller;
 
 import com.example.hellobackend.model.Bill;
-import com.example.hellobackend.dto.BillSummary;
+import com.example.hellobackend.repository.UserRepository;
+import com.example.hellobackend.dto.IncomingBill;
 import com.example.hellobackend.service.BillService;
 import jakarta.validation.Valid;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,29 +16,28 @@ import java.util.List;
 public class BillController {
 
     private final BillService service;
+    private final UserRepository userRepository;
 
-    public BillController(BillService service) {
+    public BillController(BillService service, UserRepository userRepository) {
         this.service = service;
+        this.userRepository = userRepository;
     }
 
     @GetMapping
-    public List<Bill> getAll() {
-        return service.getAll();
-    }
-
-    @GetMapping("/done")
-    public List<Bill> getPaidBills() {
-        return service.getPaidBills();
-    }
-
-    @GetMapping("/paid/summary")
-    public List<BillSummary> getPaidSummaries() {
-        return service.getPaidSummaries();
+    public List<Bill> getAll(@AuthenticationPrincipal String username) {
+        var user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        return service.getAllByUser(user);
     }
 
     @PostMapping
-    public Bill create(@Valid @RequestBody Bill bill) {
-        return service.create(bill);
+    public Bill create(
+        @Valid @RequestBody IncomingBill bill,
+        @AuthenticationPrincipal String username
+    ) {
+        var user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        return service.create(bill, user);
     }
 
     @PutMapping("/{id}/paid")

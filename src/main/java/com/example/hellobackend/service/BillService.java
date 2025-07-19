@@ -1,7 +1,8 @@
 package com.example.hellobackend.service;
 
 import com.example.hellobackend.model.Bill;
-import com.example.hellobackend.dto.BillSummary;
+import com.example.hellobackend.model.User;
+import com.example.hellobackend.dto.IncomingBill;
 import com.example.hellobackend.repository.BillRepository;
 import org.springframework.stereotype.Service;
 
@@ -17,12 +18,16 @@ public class BillService {
         this.repository = repository;
     }
 
-    public List<Bill> getAll() {
-        return repository.findAll();
+    public List<Bill> getAllByUser(User user) {
+        return repository.findByUser(user);
     }
 
-    public Bill create(Bill bill) {
-        return repository.save(bill);
+    public Bill create(IncomingBill bill, User user) {
+        Bill newBill = new Bill();
+        newBill.setDescription(bill.getDescription());
+        newBill.setAmount(bill.getAmount());
+        newBill.setUser(user);
+        return repository.save(newBill);
     }
 
     public Optional<Bill> markPaid(Long id) {
@@ -30,14 +35,6 @@ public class BillService {
             bill.setPaid(true);
             return repository.save(bill);
         });
-    }
-
-    public List<Bill> getPaidBills() {
-        return repository.findByPaidTrue();
-    }
-
-    public List<BillSummary> getPaidSummaries() {
-        return repository.findPaidBillSummaries();
     }
 
 }

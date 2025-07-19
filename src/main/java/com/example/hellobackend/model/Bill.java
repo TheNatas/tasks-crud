@@ -19,6 +19,10 @@ public class Bill {
 
     private boolean paid = false;
 
+    @NotNull(message = "User is required")
+    @ManyToOne
+    private User user;
+
     // Constructors
     public Bill() {}
     public Bill(
@@ -60,5 +64,13 @@ public class Bill {
 
     public void setPaid(boolean paid) {
         this.paid = paid;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
