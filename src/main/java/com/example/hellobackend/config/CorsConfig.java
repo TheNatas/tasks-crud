@@ -17,7 +17,8 @@ public class CorsConfig {
                         .allowedOrigins(
                             "http://localhost:4200", 
                             "https://thenatas-projects.vercel.app",
-                            "https://personal-finance-git-master-thenatas-projects.vercel.app"
+                            "https://personal-finance-git-master-thenatas-projects.vercel.app",
+                            "https://personal-finance-hwi9dv0cp-thenatas-projects.vercel.app"
                         )
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
