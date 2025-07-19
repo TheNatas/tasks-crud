@@ -14,7 +14,11 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(@org.springframework.lang.NonNull CorsRegistry registry) {
                 registry.addMapping("/**") // allow all endpoints
-                        .allowedOrigins("http://localhost:4200", "https://thenatas-projects.vercel.app") // your frontend
+                        .allowedOrigins(
+                            "http://localhost:4200", 
+                            "https://thenatas-projects.vercel.app",
+                            "https://personal-finance-git-master-thenatas-projects.vercel.app"
+                        )
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true);
