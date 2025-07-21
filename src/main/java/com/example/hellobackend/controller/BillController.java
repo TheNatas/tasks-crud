@@ -3,6 +3,7 @@ package com.example.hellobackend.controller;
 import com.example.hellobackend.model.Bill;
 import com.example.hellobackend.repository.UserRepository;
 import com.example.hellobackend.dto.IncomingBill;
+import com.example.hellobackend.dto.MonthlyBillGroup;
 import com.example.hellobackend.service.BillService;
 import jakarta.validation.Valid;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -43,5 +44,12 @@ public class BillController {
     @PutMapping("/{id}/paid")
     public Bill markPaid(@PathVariable Long id) {
         return service.markPaid(id).orElseThrow(() -> new RuntimeException("Bill not found"));
+    }
+
+    @GetMapping("/grouped-by-month")
+    public List<MonthlyBillGroup> getBillsGroupedByMonth(@AuthenticationPrincipal String username) {
+        var user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        return service.getBillsGroupedByMonth(user);
     }
 }
