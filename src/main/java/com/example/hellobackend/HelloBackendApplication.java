@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 public class HelloBackendApplication {
 
     public static void main(String[] args) {
+        System.out.println("spring.datasource.url = " + System.getenv("SPRING_DATASOURCE_URL"));
         SpringApplication.run(HelloBackendApplication.class, args);
     }
 }
