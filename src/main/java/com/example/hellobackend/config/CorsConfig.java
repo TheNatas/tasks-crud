@@ -20,6 +20,7 @@ public class CorsConfig {
                             "https://personal-finance-thenatas-projects.vercel.app",
                             "https://personal-finance-git-master-thenatas-projects.vercel.app",
                             "https://personal-finance-hwi9dv0cp-thenatas-projects.vercel.app",
+                            "https://personal-finance-thenatas-projects.vercel.app/",
                             "https://personal-finance-ten-rho.vercel.app"
                         )
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
