@@ -20,7 +20,7 @@ public class HelloBackendApplication {
                 String[] userInfo = dbUri.getUserInfo().split(":");
                 String username = userInfo[0];
                 String password = userInfo[1];
-                String jdbcUrl = "jdbc:postgresql://" + dbUri.getHost() + ":" + dbUri.getPort() + dbUri.getPath();
+                String jdbcUrl = "jdbc:postgresql://" + dbUri.getHost() + ":" + dbUri.getPort() + dbUri.getPath() + "?sslmode=require";
 
                 System.setProperty("spring.datasource.url", jdbcUrl);
                 System.setProperty("spring.datasource.username", username);
